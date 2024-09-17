@@ -2,7 +2,6 @@ require('dotenv').config()
 const express  = require('express')
 const app = express()
 const path = require('path')
-const rootRoutes = require('./routes/root')
 const {logger, logEvents} = require('./middleware/logger')
 const errorHandler = require('./middleware/errorHandler')
 const cookieParser = require('cookie-parser')
@@ -10,6 +9,9 @@ const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
 const connectDB = require('./config/dbConnection')
 const mongoose = require('mongoose')
+
+const rootRoutes = require('./routes/root')
+const userRoute = require('./routes/userRoutes')
 
 const PORT = process.env.PORT || 3500
 
@@ -23,6 +25,7 @@ app.use(cookieParser())
 
 app.use('/', express.static(path.join(__dirname, '/public'))) //telling express where to look for static files
 app.use('/', rootRoutes) //tell where to get the route file
+app.use('/users',userRoute)
 app.all('*', (req,res) =>{
     res.status(404) //error status
     if(req.accepts('html')){ //for the case of non-existing html file
