@@ -12,6 +12,7 @@ const mongoose = require('mongoose')
 
 const rootRoutes = require('./routes/root')
 const userRoute = require('./routes/userRoutes')
+const noteRoute = require('./routes/noteRoutes')
 
 const PORT = process.env.PORT || 3500
 
@@ -26,6 +27,7 @@ app.use(cookieParser())
 app.use('/', express.static(path.join(__dirname, '/public'))) //telling express where to look for static files
 app.use('/', rootRoutes) //tell where to get the route file
 app.use('/users',userRoute)
+app.use('/notes',noteRoute)
 app.all('*', (req,res) =>{
     res.status(404) //error status
     if(req.accepts('html')){ //for the case of non-existing html file
