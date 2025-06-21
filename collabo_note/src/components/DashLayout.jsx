@@ -4,12 +4,13 @@ import DashFooter from './DashFooter'
 
 export const DashLayout = () => {
   return (
-    <>
+    <div className='min-h-screen flex flex-col'>
         <DashHeader/>
-        <div className="dash-container">
-            <Outlet/>
+        <div className="dash-container flex flex-col flex-1">
+              <Outlet/>
+              
         </div>
         <DashFooter/>
-    </>
+    </div>
   )
 }

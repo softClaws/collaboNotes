@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
-import './App.css'
+import './index.css'
 import Public from './components/Public'
 import Login from './features/auth/Login'
 import { DashLayout } from './components/DashLayout'

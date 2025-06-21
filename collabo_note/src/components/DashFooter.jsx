@@ -22,7 +22,7 @@ const DashFooter = () => {
     )
   }
   const content = (
-    <footer className ="dashFooter">
+    <footer className ="dashFooter flex p-2 justify-between bg-[#ffddb2] font-poppins">
       {goHomeButton}
       <p>Current User</p>
       <p>Status</p>
