@@ -1,4 +1,4 @@
-# Coolabo Note
+# Collabo Note
 
 Collabo Note, this is a note management web app that helps to users to effectively and dynamically keep notes. This attempt to encourage writing culture and allow Creator and Contributor to explore there 
 
