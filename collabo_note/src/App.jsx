@@ -7,6 +7,8 @@ import { DashLayout } from './components/DashLayout'
 import Welcome from './features/auth/Welcome'
 import NotesList from './features/notes/NotesList'
 import UserList  from './features/users/UserList'
+import {EditUser} from './features/users/EditUser'
+import {EditNote} from './features/notes/EditNote'
 
 function App() {
 
@@ -23,11 +25,13 @@ function App() {
     <Route path='notes'>
 
     <Route index element ={<NotesList/>}/>
+    <Route path =':noteId' element ={<EditNote/>}/>
 
     </Route>
     <Route path='users'>
 
     <Route index element ={<UserList/>}/>
+    <Route path =':userId' element ={<EditUser/>}/>
 
     </Route>
 

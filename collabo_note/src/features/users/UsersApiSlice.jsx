@@ -17,7 +17,7 @@ import { createSelector,
         keepUnusedDataFor: 5,
         transformResponse: responseData =>{
             const loadedUsers = responseData.map(user => {
-                user.id = user._id
+                user.id = user._id //normalized data look for id props and not _id, hence the renaming
                 return user
             });
             return usersAdapter.setAll(initialState, loadedUsers)
