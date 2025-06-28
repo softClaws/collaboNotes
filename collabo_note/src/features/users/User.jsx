@@ -14,10 +14,16 @@ export const User = ({userId}) => {
 
     if(users){
     
-    const handleEdit =()=> navigate(`/dash/users/${users.id}`)
+    const handleEdit =()=> navigate(`/dash/users/${userId}`)
     const userCred=(
-    <div className='flex flex-col gap-4 mb-2 space-x-2 font-poppins bg-[#fffff1] p-2 shadow-xl'>
-            <div className='flex justify-between'>
+    <div className='flex flex-col gap-4 mb-2 
+        space-x-2 
+        font-poppins
+        bg-[#fffff7] 
+            p-2 
+            shadow-lg 
+            hover:scale-y-105 ease-in-out'>
+            <div className='flex justify-between '>
                 <p> Username</p>
                 <p>{users.username}</p>
             </div>
@@ -27,7 +33,7 @@ export const User = ({userId}) => {
             </div>
             <div className='flex justify-between'>
                 <p> Active</p>
-                <p>{users.active.toString()}</p>
+                <p className= {users.active? 'text-green-400' : 'text-red-400'}>{users.active.toString()}</p>
             </div>
             <button
         onClick ={handleEdit}

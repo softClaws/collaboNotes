@@ -9,7 +9,7 @@ export const Note = ({noteId}) => {
 
     const note = useSelector(state =>selectNoteById(state,noteId))
     const navigate = useNavigate()
-    const handleEdit =()=> navigate(`/dash/notes/${note.id}`)
+    const handleEdit =()=> navigate(`/dash/notes/${noteId}`)
     const createdAt = new Date(note.createdAt).toLocaleString('en-NG',{day: 'numeric', month: 'long', year: 'numeric'})
     const updatedAt = new Date(note.updatedAt).toLocaleString('en-NG',{day: 'numeric', month: 'long', year: 'numeric'})
 
@@ -20,18 +20,17 @@ export const Note = ({noteId}) => {
             mb-2 
             space-x-2 
             font-playwright 
-            bg-[#ffffe1] 
-            
-             
+            bg-[#fffff7]
             p-2 
-            shadow-xl
+            shadow-lg
+            hover:scale-y-105 ease-in-out
             '>
                 
-                <div className="flex justify-between font-roboto text-sm">
-                    <p>Owner: {note.user}</p>
-                    <p className =" border-b-amber-400 border-b-2">Created on: {createdAt}</p>
+                <div className="flex justify-between font-playwright text-sm">
+                    
+                    <p className =" border-l-amber-400 border-l-2 p-1">Created on: {createdAt}</p>
 
-                    <p className=" border-b-amber-400 border-b-2"> Updated on: {createdAt}</p>
+                    <p className=" border-l-amber-400 border-l-2 p-1"> Updated on: {createdAt}</p>
                 </div>
                 <div className="flex justify-between">
                     <p>Title</p>
@@ -41,9 +40,9 @@ export const Note = ({noteId}) => {
 
                 <div className="flex justify-between">
                     <p>Completed</p>
-                    <p>{note.completed.toString()}</p>
+                    <p className= {note.completed? 'text-green-400' : 'text-red-400'}>{note.completed.toString()}</p>
                 </div>
-                
+                <p className="text-sm font-techMono">Owner: {note.username}</p>
                 <button
                         onClick ={handleEdit}
                         >

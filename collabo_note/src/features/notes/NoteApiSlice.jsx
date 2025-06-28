@@ -32,12 +32,39 @@ import { createEntityAdapter,createSelector } from "@reduxjs/toolkit";
                 } else return [{type: 'Notes', id: 'LIST'}]
             }
 
-        })
+        }),
+        addNote: builder.mutation({
+            query: initialNotes =>({
+                url: '/notes',
+                method: 'POST',
+                body: {...initialNotes}
+            }),
+            invalidatesTags: [{type: 'Note', id: 'LIST'}]
+        }),
+        updateNote: builder.mutation({
+            query: initialNotes =>({
+                url: `/notes/${initialNotes.id}`,
+                method: 'PATCH',
+                body: {...initialNotes}
+            }),
+            invalidatesTags: (result, error, arg) => [{type: 'Note', id: arg.id}]
+        }),
+        deleteNote: builder.mutation({
+            query: ({id}) =>({
+                url: `/notes/${id}`,
+                method: 'DELETE',
+                body: {id}
+            }),
+            invalidatesTags: (result, error, arg) =>[{type: 'Note', id: arg.id}]
+        }),
     })
  })
 
  export const {
     useGetNotesQuery,
+    useAddNoteMutation,
+    useUpdateNoteMutation,
+    useDeleteNoteMutation
  } = notesApiSlice
 
  //return the getNotes query result
