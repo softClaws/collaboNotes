@@ -21,7 +21,7 @@ export const User = ({userId}) => {
         font-poppins
         bg-[#fffff7] 
             p-2 
-            shadow-lg 
+            shadow-[8px_8px_16px_#bebebe,_-8px_-8px_16px_#ffffff] 
             hover:scale-y-105 ease-in-out'>
             <div className='flex justify-between '>
                 <p> Username</p>
@@ -37,8 +37,9 @@ export const User = ({userId}) => {
             </div>
             <button
         onClick ={handleEdit}
+        className ="hover:cursor-pointer "
         >
-            <FontAwesomeIcon icon ={faPenToSquare}/>
+            <FontAwesomeIcon className= "text-amber-600  hover:translate-y-1.5" icon ={faPenToSquare}/>
         </button>
         </div>
     )

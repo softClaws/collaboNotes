@@ -26,8 +26,8 @@ const NotesList = () => {
     ): "No Note Available"
   }
   if(isError){
-    content =  <p className="flex justify-center items-center align-middle">{error.data.message}</p>
-    console.log(error.data.message)
+    content =  <p className="flex justify-center items-center align-middle">{error?.error}</p>
+    console.log(error?.error)
   }
   return (
     <h1>{content}</h1>

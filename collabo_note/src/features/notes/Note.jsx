@@ -22,7 +22,8 @@ export const Note = ({noteId}) => {
             font-playwright 
             bg-[#fffff7]
             p-2 
-            shadow-lg
+            
+            shadow-[8px_8px_16px_#bebebe,_-8px_-8px_16px_#ffffff] 
             hover:scale-y-105 ease-in-out
             '>
                 

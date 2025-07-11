@@ -2,7 +2,22 @@
 
 export const UserForm = () => {
   return (
-    <>
+    
+    <form className='flex 
+    justify-center 
+    flex-col 
+    items-center 
+    md:w-1/2 
+    w-sm 
+    gap-2
+    shadow-[8px_8px_16px_#bebebe,_-8px_-8px_16px_#ffffff] 
+    p-4 
+    rounded-4xl 
+    md:h-full 
+    md:max-w-lg
+    max-w-sm 
+    m-auto 
+    h-80'>
         <h1 className='text-xl m-2 font-playwright'>Signup</h1>
 
 <label className='font-playwright px-2'> Username: 
@@ -10,8 +25,16 @@ export const UserForm = () => {
 type="text" name="username" 
 className='border-amber-200 
 font-playwright 
-border-b-2 border-b-amber-200 border-t-0 border-l-0 border-r-0 focus:outline-none px-3 py-1
-'/>
+border-b-2
+border-b-amber-200 
+border-t-0 
+border-l-0 
+border-r-0 
+focus:outline-none 
+px-3 
+py-1
+'
+autoComplete="none"/>
 </label>
 
 <label className='font-playwright px-2'> Email: 
@@ -19,8 +42,29 @@ border-b-2 border-b-amber-200 border-t-0 border-l-0 border-r-0 focus:outline-non
 type="email" name="email "  
 className='border-amber-200
 font-playwright 
-border-b-2 border-b-amber-200 border-t-0 border-l-0 border-r-0 focus:outline-none px-6 py-1
-'/>
+border-b-2 
+border-b-amber-200 
+border-t-0 border-l-0 
+border-r-0 focus:outline-none 
+px-6 
+py-1
+'
+/>
+</label>
+
+
+<label className='font-playwright'> Role: 
+<select 
+type="text" name="role" 
+className='border-amber-200
+font-playwright 
+border-b-2 border-b-amber-200 border-t-0 border-l-0 border-r-0 focus:outline-none px-19 py-1
+'>
+  <option value=""></option>
+  <option value="creator">Creator</option>
+  <option value="contributor">Contributor</option>
+  <option value="reader">Reader</option>
+   </select>
 </label>
 
 <label className='font-playwright px-2'> Password: 
@@ -34,22 +78,21 @@ border-b-2 border-b-amber-200 border-t-0 border-l-0 border-r-0 focus:outline-non
 
 
 
-<label className='font-playwright'> Role: 
-<select 
-type="text" name="role" 
-className='border-amber-200
-font-playwright 
-border-b-2 border-b-amber-200 border-t-0 border-l-0 border-r-0 focus:outline-none px-19 py-1
-'>
-  <option value=""></option>
-  <option value="creator">Creator</option>
-  <option value="contributor">Contributor</option>
-   </select>
-</label>
 <div>
         <button type="submit"
-        className='rounded-xl border-amber-200 border-2 hover:bg-amber-100 cursor-pointer p-2'> Sign Up</button>
+        className='rounded-xl 
+        border-amber-200 
+        border-2 
+        hover:bg-amber-100 
+        transform 
+        -rotate-12 
+        hover:rotate-0 
+        cursor-pointer 
+        p-2 mt-2 
+        font-playwright 
+        font-medium 
+        shadow-lg '> Sign Up</button>
       </div>
-    </>
+      </form>
   )
 }

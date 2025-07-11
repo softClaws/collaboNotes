@@ -29,8 +29,8 @@ const UserList = () => {
 
    }
     if(isError){
-    <p>{error?.error}</p>
-    console.log(error?.error)
+      content =  <p className="flex justify-center items-center align-middle">{error?.error}</p>
+      console.log(error?.error)
    }
   return (
     <>{content}</>
