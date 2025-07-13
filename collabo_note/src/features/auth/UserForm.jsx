@@ -2,13 +2,13 @@
 
 export const UserForm = () => {
   return (
-    
+    <div className = "flex flex-col justify-center align-middle md:w-1/2 w-sm ">
+    <h1 className='flex justify-center text-xl m-2 font-playwright'>Signup</h1>
     <form className='flex 
     justify-center 
     flex-col 
     items-center 
-    md:w-1/2 
-    w-sm 
+    
     gap-2
     shadow-[8px_8px_16px_#bebebe,_-8px_-8px_16px_#ffffff] 
     p-4 
@@ -18,7 +18,6 @@ export const UserForm = () => {
     max-w-sm 
     m-auto 
     h-80'>
-        <h1 className='text-xl m-2 font-playwright'>Signup</h1>
 
 <label className='font-playwright px-2'> Username: 
 <input 
@@ -94,5 +93,6 @@ border-b-2 border-b-amber-200 border-t-0 border-l-0 border-r-0 focus:outline-non
         shadow-lg '> Sign Up</button>
       </div>
       </form>
+    </div>
   )
 }

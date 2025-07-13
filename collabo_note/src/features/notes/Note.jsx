@@ -17,7 +17,7 @@ export const Note = ({noteId}) => {
             return <div className='flex 
             flex-col 
             gap-4 
-            mb-2 
+            mt-2 
             space-x-2 
             font-playwright 
             bg-[#fffff7]
@@ -45,6 +45,7 @@ export const Note = ({noteId}) => {
                 </div>
                 <p className="text-sm font-techMono">Owner: {note.username}</p>
                 <button
+                        className="text-amber-600"
                         onClick ={handleEdit}
                         >
                             <FontAwesomeIcon icon ={faPenToSquare}/>

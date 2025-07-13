@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {faSave} from "@fortawesome/free-solid-svg-icons"
 import { ROLES } from "../../config/roles"
-import { UserForm } from "../auth/UserForm"
+import { FormTemplate } from "../../config/FormTemplate"
 
 //REGEX constants
 const USER_REGEX = /^[A-z]{3,20}$/ 
-const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
+const PWD_REGEX = /^[A-z0-9!@#_$%]{4,12}$/
 
 export const NewUserForm = () => {
     const [
@@ -30,6 +30,9 @@ export const NewUserForm = () => {
     useEffect(()=>{
         setValidUsername(USER_REGEX.test(username))
     }, [username])
+    useEffect(()=>{
+        setValidPassword(PWD_REGEX.test(password))
+    }, [password])
     useEffect(()=>{
         if(isSuccess){
             setUsername('')
@@ -57,11 +60,45 @@ export const NewUserForm = () => {
             await addNewUser({username, password, roles})
         }
     }
+    
+    const options = Object.values(ROLES).map(role =>{
+        return (
+            <option key ={role} value={role}> {role}</option>
+        )
+    })
+    /**
+     * 
+     * @desc function properties
+     * @returns properties object 
+     */
+    const inputProps =({textLabel, value,changeAction})=>{
+        return({textLabel, value, changeAction})
+    }
+    const rolesProps =({textLabel, value,changeAction, options})=>{
+        return({textLabel, value, changeAction, options})
+    }
+    const buttonProps =({icon, disable,title})=>{
+        return({icon, disable, title})
+    }
+    // attribute formatted to be passed to child component(FormTemplate)
+    const attribute ={
+        pageTitleProps: "New User",
+        onFormSubmit: onSaveUserClicked,
+        usernameProps: inputProps({textLabel:"Username", value: username, changeAction: onUsernameChanged}),
+        passwordProps: inputProps({textLabel:"Password", value: password,changeAction:onPasswordChanged}),
+        rolesProps: rolesProps({textLabel:"Roles", value: roles,changeAction:onRolesChanged, options}),
+        buttonIconProps:  buttonProps({icon: <FontAwesomeIcon icon ={faSave}/>, disable: !canSave, title: "Save"})
+        
+    }
 
     const content =(
         <>
+        <div className="flex justify-center align-middle">
+
         <p>{error?.data.message}</p>
-        <form onSubmit ={onCanSaveUserClicked}>
+        <FormTemplate attribute= {attribute}/>
+        </div>
+        {/* <form onSubmit ={onSaveUserClicked}>
         <div>
             <h2>New User</h2>
             <div>
@@ -71,7 +108,7 @@ export const NewUserForm = () => {
             </div>
         </div>
         <label htmlFor="username"></label>
-        </form>
+        </form> */}
         </>
     )
 

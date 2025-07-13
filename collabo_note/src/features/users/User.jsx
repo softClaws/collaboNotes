@@ -16,20 +16,20 @@ export const User = ({userId}) => {
     
     const handleEdit =()=> navigate(`/dash/users/${userId}`)
     const userCred=(
-    <div className='flex flex-col gap-4 mb-2 
-        space-x-2 
+        <div className='flex flex-col gap-4 mt-2 
+        w-xl 
         font-poppins
         bg-[#fffff7] 
             p-2 
             shadow-[8px_8px_16px_#bebebe,_-8px_-8px_16px_#ffffff] 
-            hover:scale-y-105 ease-in-out'>
+            hover:scale-y-105 ease-in-out justify-between '>
             <div className='flex justify-between '>
                 <p> Username</p>
                 <p>{users.username}</p>
             </div>
             <div className='flex justify-between'>
-                <p> Role</p>
-                <p>{(users.roles)? users.roles : "No Role"}</p>
+                <p> Roles</p>
+                <p>{(users.roles)? users.roles.join(", ") : "No Role"}</p>
             </div>
             <div className='flex justify-between'>
                 <p> Active</p>

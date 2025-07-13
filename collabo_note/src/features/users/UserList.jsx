@@ -16,7 +16,7 @@ const UserList = () => {
    } 
    if(isSuccess){
     const {ids} = users;
-    content = ids?.length? 
+    const list = ids?.length? 
     ids.map(userId =>{
       return(
         
@@ -24,7 +24,12 @@ const UserList = () => {
       )}
     ): "No users Available"
 
-    
+    content = (
+      <div className = "flex flex-wrap justify-between  ">
+        {list}
+        {/* {list} */}
+      </div>
+    )
     
 
    }
