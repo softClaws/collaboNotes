@@ -60,7 +60,7 @@ const updateUser = asyncHandler(async(req, res)=>{
         }
 
         //checking for duplicate
-        const duplicate = await user.findOne({username}).lean().exec()
+        const duplicate = await User.findOne({username}).lean().exec()
 
             //allow update to the original user
             if(duplicate && duplicate?._id.toString() != id){

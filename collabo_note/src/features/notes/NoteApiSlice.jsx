@@ -15,7 +15,6 @@ import { createEntityAdapter,createSelector } from "@reduxjs/toolkit";
             validateStatus: (response, result) =>{
                 return response.status === 200 && !result.isError
             },
-            keepUnusedDataFor: 5, //this is the number of seconds the cache should hold data before reload
             transformResponse: response =>{
                 const loadedNotes = response.map(note=>{
                     note.id = note._id // normalized data expect an id props and not _id , thus the changing the props to note.id and then return the note object
@@ -43,7 +42,7 @@ import { createEntityAdapter,createSelector } from "@reduxjs/toolkit";
         }),
         updateNote: builder.mutation({
             query: initialNotes =>({
-                url: `/notes/${initialNotes.id}`,
+                url: '/notes',
                 method: 'PATCH',
                 body: {...initialNotes}
             }),
@@ -51,7 +50,7 @@ import { createEntityAdapter,createSelector } from "@reduxjs/toolkit";
         }),
         deleteNote: builder.mutation({
             query: ({id}) =>({
-                url: `/notes/${id}`,
+                url: '/notes',
                 method: 'DELETE',
                 body: {id}
             }),

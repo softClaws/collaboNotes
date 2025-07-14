@@ -14,7 +14,6 @@ import { createSelector,
         validateStatus: (response, result) =>{
             return response.status === 200 && !result.isError
         },
-        keepUnusedDataFor: 5,
         transformResponse: responseData =>{
             const loadedUsers = responseData.map(user => {
                 user.id = user._id //normalized data look for id props and not _id, hence the renaming
@@ -41,7 +40,7 @@ import { createSelector,
         }),
         updateUser: builder.mutation({
             query: (initialState) =>({
-                url: `/users/${initialState.id}`,
+                url: '/users',
                 method: 'PATCH',
                 body: {...initialState}
             }),
@@ -52,7 +51,7 @@ import { createSelector,
         }),
         deleteUser: builder.mutation({
             query: ({id})=>({
-                url: `/users/${id}`,
+                url: '/users',
                 method: 'DELETE',
                 body: {id}
             }),

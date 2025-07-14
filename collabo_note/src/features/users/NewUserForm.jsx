@@ -94,21 +94,11 @@ export const NewUserForm = () => {
     const content =(
         <>
         <div className="flex justify-center align-middle">
-
-        <p>{error?.data.message}</p>
+        
         <FormTemplate attribute= {attribute}/>
+        <p>{(isError)?error?.error : null}</p>
         </div>
-        {/* <form onSubmit ={onSaveUserClicked}>
-        <div>
-            <h2>New User</h2>
-            <div>
-                <button title = "Save" disabled={!canSave}>
-                    <FontAwesomeIcon icon ={faSave}/>
-                </button>
-            </div>
-        </div>
-        <label htmlFor="username"></label>
-        </form> */}
+        
         </>
     )
 

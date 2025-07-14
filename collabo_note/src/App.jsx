@@ -11,6 +11,7 @@ import {EditUser} from './features/users/EditUser'
 import {EditNote} from './features/notes/EditNote'
 import { NewNote } from './features/notes/NewNote'
 import { NewUserForm } from './features/users/NewUserForm'
+import Prefetch from './features/auth/Prefetch'
 
 function App() {
 
@@ -20,27 +21,28 @@ function App() {
     <Route index element = {<Public/>} />
     <Route path = "login" element = {<Login/>} />
 
+    <Route element ={<Prefetch/>}>
+      <Route path = "dash" element ={<DashLayout/>}>
+      <Route index element ={<Welcome/>}/>
 
-    <Route path = "dash" element ={<DashLayout/>}>
-    <Route index element ={<Welcome/>}/>
+      <Route path='users'>
 
-    <Route path='users'>
+      <Route index element ={<UserList/>}/>
+      <Route path =':id' element ={<EditUser/>}/>
+      <Route path ='new' element ={<NewUserForm/>}/>
 
-    <Route index element ={<UserList/>}/>
-    <Route path =':id' element ={<EditUser/>}/>
-    <Route path ='new' element ={<NewUserForm/>}/>
+      </Route>
+      
+      <Route path='notes'>
 
+      <Route index element ={<NotesList/>}/>
+      <Route path =':id' element ={<EditNote/>}/>
+      <Route path ='new' element ={<NewNote/>}/>
+
+      </Route>
+
+      </Route>  {/* End of dash route */}
     </Route>
-    
-    <Route path='notes'>
-
-    <Route index element ={<NotesList/>}/>
-    <Route path =':id' element ={<EditNote/>}/>
-    <Route path ='new' element ={<NewNote/>}/>
-
-    </Route>
-
-    </Route>  {/* End of dash route */}
 
     </Route>
    </Routes>
