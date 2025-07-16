@@ -1,6 +1,6 @@
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faHouse} from "@fortAwesome/free-solid-svg-icons"
+import {faHouse} from "@fortAwesome/free-solid-svg-icons/faHouse"
 import {useNavigate, useLocation} from 'react-router-dom'
 
 const DashFooter = () => {
@@ -22,7 +22,7 @@ const DashFooter = () => {
     )
   }
   const content = (
-    <footer className ="dashFooter flex p-2 justify-between bg-[#ffddb2] font-poppins">
+    <footer className ="dashFooter flex p-2 justify-between bg-orange-600 font-poppins">
       {goHomeButton}
       <p>Current User</p>
       <p>Status</p>

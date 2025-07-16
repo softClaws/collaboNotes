@@ -1,4 +1,9 @@
 import {Link} from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
+import { faFile } from '@fortawesome/free-solid-svg-icons/faFile';
+import { faUsers } from '@fortawesome/free-solid-svg-icons/faUsers';
+import { faBook } from '@fortawesome/free-solid-svg-icons/faBook';
 
 const Welcome = () => {
   const date = new Date()
@@ -10,9 +15,26 @@ const Welcome = () => {
       <h1>Welcome!</h1>
       <div className='p-5 w-1/2 h-1/2'>
 
-      <div className=' md:text-xl text-sm flex justify-between'>
-      <p className=''><Link to="/dash/notes" >View Notes</Link></p>
-      <p><Link to="/dash/users">View User Settings </Link></p>
+      <div className=' text-sm flex flex-wrap justify-between gap-2 font-poppins '>
+      
+      <p className='space-x-3'>
+      <FontAwesomeIcon icon={faUser} className='text-amber-400'/>
+        <Link to="/dash/users/new">Add New User </Link>
+      
+      </p>
+      
+      <p className='space-x-3'>
+        <FontAwesomeIcon icon={faFile} className='text-amber-400'/>
+        <Link to="/dash/notes/new" >Add new  Note</Link></p>
+      <p className='space-x-3'>
+        <FontAwesomeIcon icon={faBook} className='text-amber-400'/>
+      <Link to="/dash/notes" >View Notes</Link>
+      </p>
+
+      <p className='space-x-3'>
+      <FontAwesomeIcon icon={faUsers} className='text-amber-400'/>
+        <Link to="/dash/users">View Users </Link>
+      </p>
       </div>
         
       </div>

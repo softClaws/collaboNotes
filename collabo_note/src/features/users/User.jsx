@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { selectUsersById } from './UsersApiSlice'
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faPenToSquare} from '@fortawesome/free-solid-svg-icons';
+import {faPenToSquare} from '@fortawesome/free-solid-svg-icons/faPenToSquare';
 
 export const User = ({userId}) => {
     // selecting user by Id
@@ -17,12 +17,12 @@ export const User = ({userId}) => {
     const handleEdit =()=> navigate(`/dash/users/${userId}`)
     const userCred=(
         <div className='flex flex-col gap-4 mt-2 
-        w-xl 
+        lg:w-xl 
         font-poppins
         bg-[#fffff7] 
             p-2 
             shadow-[8px_8px_16px_#bebebe,_-8px_-8px_16px_#ffffff] 
-            hover:scale-y-105 ease-in-out justify-between '>
+            hover:scale-y-105 ease-in-out justify-between md:justify-center md:w-screen w-xl'>
             <div className='flex justify-between '>
                 <p> Username</p>
                 <p>{users.username}</p>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useAddUserMutation } from "./UsersApiSlice"
 import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {faSave} from "@fortawesome/free-solid-svg-icons"
+import {faSave} from "@fortawesome/free-solid-svg-icons/faSave"
 import { ROLES } from "../../config/roles"
 import { FormTemplate } from "../../config/FormTemplate"
 
