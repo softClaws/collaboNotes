@@ -140,7 +140,7 @@ const EditUserForm = ({user}) => {
       <>
       <div className="flex justify-center flex-col">
       
-      <p>{(isError || isDelError)?error?.error : null}</p>
+      <p>{(isError || isDelError)?error?.error || delError?.error : null}</p>
       <FormTemplate attribute= {attribute}/>
       </div>
   
