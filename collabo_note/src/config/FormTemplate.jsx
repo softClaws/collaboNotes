@@ -100,7 +100,8 @@ size ={2}
         border-amber-200 
         border-1 
         text-amber-600
-        hover:bg-amber-100 
+        hover:bg-amber-100
+        disabled:text-gray-400 
         transform 
         -rotate-12 
         hover:rotate-0 
@@ -122,6 +123,7 @@ size ={2}
            border-amber-200 
            border-1 
            text-amber-600
+           disabled:text-gray-400
            hover:bg-amber-100 
            transform 
            -rotate-12 

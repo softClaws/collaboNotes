@@ -93,10 +93,10 @@ export const NewUserForm = () => {
 
     const content =(
         <>
-        <div className="flex justify-center align-middle">
+        <div className="flex justify-center align-middle flex-col">
         
+        <p className= "flex justify-center items-center">{(isError)?error?.error : null}</p>
         <FormTemplate attribute= {attribute}/>
-        <p>{(isError)?error?.error : null}</p>
         </div>
         
         </>

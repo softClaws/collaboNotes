@@ -63,7 +63,7 @@ const created = new Date(note.createdAt).toLocaleString('en-US', { day: 'numeric
     const updated = new Date(note.updatedAt).toLocaleString('en-US', { day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' })
 
   const attribute ={
-    HeadingTitle: "Save",
+    HeadingTitle: `Save - #${note.notePage}`,
     titleValue: title,
     onSaveNewNoteFunc, 
     onEditNote,
@@ -84,9 +84,12 @@ const created = new Date(note.createdAt).toLocaleString('en-US', { day: 'numeric
 }
   return (
     <>
-    <NoteFormTemplate attribute ={attribute}/>
+    <div className="flex flex-col justify-center align-middle">
 
-    {(isError || delError)? <p>{error?.error || delIsError?.error}</p> : null}
+
+    {(isError || delError)? <p className= "flex justify-center items-center">{error?.error || delIsError?.error}</p> : null}
+    <NoteFormTemplate attribute ={attribute}/>
+    </div>
     </>
   )
 }

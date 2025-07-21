@@ -1,5 +1,9 @@
 
 
+import { Link } from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faHome } from "@fortawesome/free-solid-svg-icons/faHome"
+
 export const UserForm = () => {
   return (
     <div className = "flex flex-col justify-center align-middle md:w-1/2 w-sm ">
@@ -77,7 +81,8 @@ border-b-2 border-b-amber-200 border-t-0 border-l-0 border-r-0 focus:outline-non
 
 
 
-<div>
+<div className ="flex justify-between w-full">
+          <Link to='/' className = "flex justify-center items-center px-4 "> <FontAwesomeIcon  icon ={faHome}/></Link>
         <button type="submit"
         className='rounded-xl 
         border-amber-200 
@@ -90,6 +95,7 @@ border-b-2 border-b-amber-200 border-t-0 border-l-0 border-r-0 focus:outline-non
         p-2 mt-2 
         font-playwright 
         font-medium 
+        mx-auto
         shadow-lg '> Sign Up</button>
       </div>
       </form>
