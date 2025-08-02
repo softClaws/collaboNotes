@@ -1,12 +1,10 @@
 import { useRef, useState, useEffect } from "react"
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate, } from "react-router-dom"
 
 import { useDispatch } from "react-redux"
-import { setCredential } from "./authSlice"
+import { setCredentials } from "./authSlice"
 import { useLoginMutation } from "./authApiSlice"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faHome } from "@fortawesome/free-solid-svg-icons/faHome"
 
 import { UserForm } from "./UserForm"
 const Login = () => {
@@ -21,13 +19,73 @@ const Login = () => {
 
   const [login,{isLoading}] = useLoginMutation()
 
+  
+  useEffect(()=>{
+    userRef.current.focus()
+  }, [])
+  useEffect(()=>{
+    setErrMsg('')
+  }, [username, password])
+  if(isLoading) return <p>Loading...</p>
+  const handleSubmit = async (e)=>{
+    e.preventDefault()
+    try{
+      const {accessToken} = await login({username, password}).unwrap()
+      dispatch(setCredentials({accessToken}))
+      setUsername('')
+      setPassword('')
+      navigate('/dash')
+
+    }catch(err){
+      if(!err.status){
+        setErrMsg('No Server Response')
+      } else if(err.status == 400){
+        setErrMsg('Missing Username or Password')
+      } else if(err.status == 401){
+        setErrMsg('Unauthorized')
+      }else{
+        setErrMsg(err.data?.message);
+      }
+      errRef.current.focus();
+    }
+  }
+  
+  const handleUserInput = (e)=>setUsername(e.target.value)
+  const handleErrMsgInput = (e)=>setErrMsg(e.target.value)
+  const handlePasswordInput = (e)=>setPassword(e.target.value)
+
+  const canLogin = [username, password].every(Boolean) && !isLoading
+  const userErrRefs= {
+    userRef,
+    errRef
+  }
+
+  const inputData ={
+    errMsg,
+    username,
+    password
+  }
+
+  const handlers ={
+    handleSubmit,
+    handleUserInput,
+    handleErrMsgInput,
+    handlePasswordInput
+  }
+  const attribute ={
+    inputData,
+    userErrRefs,
+    handlers,
+    canLogin
+  }
+
   if(isLoading) return <p>Loading ...</p>
   const content = (
     <div className='flex items-center 
     justify-center  gap-4'>
       {/* <div className = "flex flex-col "> */}
 
-        <UserForm/>
+        <UserForm attribute = {attribute}/>
 {/* 
         <Link to='/'> <FontAwesomeIcon icon ={faHome}/></Link>
       </div> */}

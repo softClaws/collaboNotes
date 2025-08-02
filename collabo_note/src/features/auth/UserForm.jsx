@@ -4,10 +4,12 @@ import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHome } from "@fortawesome/free-solid-svg-icons/faHome"
 
-export const UserForm = () => {
+export const UserForm = ({attribute}) => {
+  const {inputData, userErrRefs, handlers, canLogin} = attribute
   return (
     <div className = "flex flex-col justify-center align-middle md:w-1/2 w-sm ">
-    <h1 className='flex justify-center text-xl m-2 font-playwright'>Signup</h1>
+    <h1 className='flex justify-center text-xl m-2 font-playwright'>Sign In</h1>
+    <p aria-live="assertive">{inputData.errMsg}</p>
     <form className='flex 
     justify-center 
     flex-col 
@@ -21,14 +23,14 @@ export const UserForm = () => {
     md:max-w-lg
     max-w-sm 
     m-auto 
-    h-80'>
+    h-80' onSubmit={handlers.handleSubmit}>
 
 <label className='font-playwright px-2'> Username: 
 <input 
 type="text" name="username" 
 className='border-amber-200 
 font-playwright 
-border-b-2
+border-b-1
 border-b-amber-200 
 border-t-0 
 border-l-0 
@@ -37,10 +39,15 @@ focus:outline-none
 px-3 
 py-1
 '
-autoComplete="none"/>
+autoComplete="none"
+ref ={userErrRefs?.userRef}
+required
+value={inputData.username}
+onChange = {handlers.handleUserInput}
+/>
 </label>
 
-<label className='font-playwright px-2'> Email: 
+{/* <label className='font-playwright px-2'> Email: 
 <input 
 type="email" name="email "  
 className='border-amber-200
@@ -53,10 +60,10 @@ px-6
 py-1
 '
 />
-</label>
+</label> */}
 
 
-<label className='font-playwright'> Role: 
+{/* <label className='font-playwright'> Role: 
 <select 
 type="text" name="role" 
 className='border-amber-200
@@ -68,15 +75,20 @@ border-b-2 border-b-amber-200 border-t-0 border-l-0 border-r-0 focus:outline-non
   <option value="contributor">Contributor</option>
   <option value="reader">Reader</option>
    </select>
-</label>
+</label> */}
 
 <label className='font-playwright px-2'> Password: 
 <input 
 type="password" name="password "
 className='border-amber-200
 font-playwright 
-border-b-2 border-b-amber-200 border-t-0 border-l-0 border-r-0 focus:outline-none px-3 py-1
-'/>
+border-b-1 border-b-amber-200 border-t-0 border-l-0 border-r-0 focus:outline-none px-3 py-1
+'
+ref ={userErrRefs.errRef}
+value={inputData.password}
+onChange = {handlers.handlePasswordInput}
+required
+/>
 </label>
 
 
@@ -88,15 +100,15 @@ border-b-2 border-b-amber-200 border-t-0 border-l-0 border-r-0 focus:outline-non
         border-amber-200 
         border-2 
         hover:bg-amber-100 
-        transform 
-        -rotate-12 
-        hover:rotate-0 
+        transform
+        rotate-0
+        disabled:rotate-12 
         cursor-pointer 
         p-2 mt-2 
         font-playwright 
         font-medium 
         mx-auto
-        shadow-lg '> Sign Up</button>
+        shadow-lg ' disabled={!canLogin}> Sign In</button>
       </div>
       </form>
     </div>

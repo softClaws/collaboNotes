@@ -28,7 +28,7 @@ h-screen
         <p className='font-bold  text-white'> One note at a time!</p>
 
         <div className='flex justify-center items-center'>
-        <button className='font-techMono rounded-3xl mt-4  w-32  bg-amber-50 m-2 hover:bg-[#ffdda2] cursor-pointer' ><Link to='/login'>Sign up</Link> </button>
+        <button className='font-techMono rounded-3xl mt-4  w-32  bg-amber-50 m-2 hover:bg-[#ffdda2] cursor-pointer' ><Link to='/login'>Login</Link> </button>
         </div>
     </main>
 
