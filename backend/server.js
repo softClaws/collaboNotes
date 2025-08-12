@@ -13,6 +13,7 @@ const mongoose = require('mongoose')
 const rootRoutes = require('./routes/root')
 const userRoute = require('./routes/userRoutes')
 const noteRoute = require('./routes/noteRoutes')
+const authRoute = require('./routes/authRoutes')
 
 const PORT = process.env.PORT || 3500
 
@@ -26,6 +27,7 @@ app.use(cookieParser())
 
 app.use('/', express.static(path.join(__dirname, '/public'))) //telling express where to look for static files
 app.use('/', rootRoutes) //tell where to get the route file
+app.use('/auth',authRoute)
 app.use('/users',userRoute)
 app.use('/notes',noteRoute)
 app.all('*', (req,res) =>{

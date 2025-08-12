@@ -23,16 +23,16 @@ const createNewUser = asyncHandler(async(req, res)=>{
     const {username, password, roles} = req.body
 
     //confirm data
-    if(!username || !password ||!Array.isArray(roles) || !roles.length){
+    if(!username || !password ){
         return res.status(400).json({message: 'All fields are required'})
     }
     //check for duplicate
-    const duplicate = await User.findOne({username}).lean().exec()
+    const duplicate = await User.findOne({username}).collation({locale:'en', strength:2}).lean().exec()
     if(duplicate){
         return res.status(409).json({message: 'username already exist'})
     }
     const hashedPwd = await bcrypt.hash(password, 10) //salt rounds of 10
-    const userObject={username, 'password': hashedPwd, roles}
+    const userObject= (!Array.isArray(roles) || !roles.length)? {username, 'password': hashedPwd} :{username, 'password': hashedPwd, roles}
     const user = await User.create(userObject)
     if(user){ //user created
         res.status(201).json({message: `New user ${username} created successfully`})
@@ -60,7 +60,7 @@ const updateUser = asyncHandler(async(req, res)=>{
         }
 
         //checking for duplicate
-        const duplicate = await User.findOne({username}).lean().exec()
+        const duplicate = await User.findOne({username}).collation({locale:'en', strength: 2}).lean().exec()
 
             //allow update to the original user
             if(duplicate && duplicate?._id.toString() != id){

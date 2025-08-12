@@ -36,7 +36,7 @@ const createNewNote = asyncHandler( async(req,res)=>{
         res.status(400).json({message: 'All fields are required'})
     }
     //check for conflicting title
-    const duplicate = await Notes.findOne({title}).lean().exec()
+    const duplicate = await Notes.findOne({title}).collation({locale: 'en', strength: 2}).lean().exec()
 
     if(duplicate){
         return res.status(409).json({message: `Oops you already have a note with the title ${title}.`})
@@ -68,7 +68,7 @@ const updateNote = asyncHandler( async(req,res)=>{
         return res.status(400).json({message: 'Note not found'})
     }
     //check if the title exist already
-    const duplicate = await Notes.findOne({title}).lean().exec()
+    const duplicate = await Notes.findOne({title}).collation({locale: 'en', strength:2}).lean().exec()
 
     if(duplicate && duplicate?._id.toString() != id){
         return res.status(409).json({message: 'Duplicate Note'})
@@ -101,7 +101,7 @@ const deleteNote = asyncHandler( async(req,res)=>{
     }
 
 
-    const note = Notes.findById(id).exec()
+    const note = await Notes.findById(id).exec()
     if(!note){
         return res.status(400).json({message: 'Note not found'})
     }
