@@ -3,7 +3,7 @@ import {setCredentials} from '../../features/auth/AuthSlice'
 
 const baseQuery = fetchBaseQuery(
     {
-        baseUrl: 'https://collabo-notes-app.vercel.app/',
+        baseUrl: 'https://collabo-notes-app.vercel.app',
         credentials: 'include',
         prepareHeaders: (headers, {getState})=>{
             const token = getState().auth.token
