@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectCurrentToken } from "../features/auth/authSlice";
+import { selectCurrentToken } from "../features/auth/AuthSlice";
 import { jwtDecode } from "jwt-decode";
 
 export const useAuth = () => {

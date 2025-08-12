@@ -1,9 +1,9 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import {setCredentials} from '../../features/auth/authSlice' 
+import {setCredentials} from '../../features/auth/AuthSlice' 
 
 const baseQuery = fetchBaseQuery(
     {
-        baseUrl: 'http://localhost:3500/',
+        baseUrl: 'https://collabo-notes-app.vercel.app/',
         credentials: 'include',
         prepareHeaders: (headers, {getState})=>{
             const token = getState().auth.token

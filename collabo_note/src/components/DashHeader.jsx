@@ -6,7 +6,7 @@ import { faUserGear } from '@fortawesome/free-solid-svg-icons/faUserGear'
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons/faUserPlus'
 import { faFileCirclePlus } from '@fortawesome/free-solid-svg-icons/faFileCirclePlus'
 
-import { useSendLogoutMutation } from '../features/auth/authApiSlice'
+import { useSendLogoutMutation } from '../features/auth/AuthApiSlice'
 import { useAuth } from '../hooks/useAuth'
 
 const DASH_REGEX = /^\/dash(\/)?$/
