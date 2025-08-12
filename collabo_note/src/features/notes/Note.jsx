@@ -1,17 +1,22 @@
-import { selectNoteById } from "./NoteApiSlice"
-import { useSelector } from "react-redux"
+
 import { useNavigate } from "react-router-dom"
+import { useGetNotesQuery } from "./NoteApiSlice";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faPenToSquare} from '@fortawesome/free-solid-svg-icons/faPenToSquare';
+import { memo } from "react";
 
 export const Note = ({noteId}) => {
 
-    const note = useSelector(state =>selectNoteById(state,noteId))
+    const {note} = useGetNotesQuery("notesList", {
+        selectFromResult:({data})=>({
+            note: data?.entities[noteId]
+        })
+    })
     const navigate = useNavigate()
     const handleEdit =()=> navigate(`/dash/notes/${noteId}`)
-    const createdAt = new Date(note.createdAt).toLocaleString('en-NG',{day: 'numeric', month: 'long', year: 'numeric'})
-    const updatedAt = new Date(note.updatedAt).toLocaleString('en-NG',{day: 'numeric', month: 'long', year: 'numeric'})
+    const createdAt = new Date(note?.createdAt).toLocaleString('en-NG',{day: 'numeric', month: 'long', year: 'numeric'})
+    const updatedAt = new Date(note?.updatedAt).toLocaleString('en-NG',{day: 'numeric', month: 'long', year: 'numeric'})
 
     if(note){
             return <div className='flex 
@@ -31,7 +36,7 @@ export const Note = ({noteId}) => {
                     
                     <p className =" border-l-amber-400 border-l-2 p-1">Created on: {createdAt}</p>
 
-                    <p className=" border-l-amber-400 border-l-2 p-1"> Updated on: {createdAt}</p>
+                    <p className=" border-l-amber-400 border-l-2 p-1"> Updated on: {updatedAt}</p>
                 </div>
                 <div className="flex justify-between">
                     <p>Title</p>
@@ -59,3 +64,6 @@ export const Note = ({noteId}) => {
     <p>No Note</p>
   )
 }
+
+ const MemoizedNote = memo(Note)
+ export default MemoizedNote

@@ -1,5 +1,6 @@
 import { useGetUsersQuery } from "./UsersApiSlice"
-import { User } from "./User";
+import MemoizedUser from "./User";
+import { PulseLoader } from "react-spinners";
 
 const UserList = () => {
   const {
@@ -8,7 +9,7 @@ const UserList = () => {
     isSuccess,
     isError,
     error
-   } = useGetUsersQuery(undefined, {
+   } = useGetUsersQuery("UserLists", {
     pollingInterval: 60000,
     refetchOnFocus: true,
     refetchOnMountOrArgChange: true
@@ -16,7 +17,12 @@ const UserList = () => {
 
    let content;
    if(isLoading){
-    content = <p> Loading...</p>
+    content = ( 
+    <div className="flex justify-center items-center " >
+      
+      <PulseLoader color = {"#ff6600"}/>
+      </div>
+      )
    } 
    if(isSuccess){
     const {ids} = users;
@@ -24,7 +30,7 @@ const UserList = () => {
     ids.map(userId =>{
       return(
         
-        <User key ={userId} userId ={userId}/>
+        <MemoizedUser key ={userId} userId ={userId}/>
       )}
     ): "No users Available"
 
@@ -38,8 +44,8 @@ const UserList = () => {
 
    }
     if(isError){
-      content =  <p className="flex justify-center items-center align-middle">{error?.data.message}</p>
-      console.log(error?.data.message)
+      content =  <p className="flex justify-center items-center align-middle">{error?.data?.message}</p>
+      console.log(error?.data?.message)
    }
   return (
     <>{content}</>

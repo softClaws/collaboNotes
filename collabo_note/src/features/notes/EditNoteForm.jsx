@@ -1,11 +1,9 @@
 import { NoteFormTemplate } from "./NoteFormTemplate"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { useUpdateNoteMutation, useDeleteNoteMutation } from "./NoteApiSlice"
-import { useSelector } from "react-redux"
+
 const EditNoteForm = ({users, note}) => {
-  const {id} = useParams()
   const navigate = useNavigate()
   // const noteSelected = useSelector(state => selectNoteById(state, id))
 

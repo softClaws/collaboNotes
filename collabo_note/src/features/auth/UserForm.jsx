@@ -8,7 +8,7 @@ export const UserForm = ({attribute}) => {
   const {inputData, userErrRefs, handlers, canLogin} = attribute
   return (
     <div className = "flex flex-col justify-center align-middle md:w-1/2 w-sm ">
-    <h1 className='flex justify-center text-xl m-2 font-playwright'>Sign In</h1>
+    <h1 className='flex justify-center text-xl m-2 font-playwright'>Log In</h1>
     <p aria-live="assertive">{inputData.errMsg}</p>
     <form className='flex 
     justify-center 
@@ -93,23 +93,34 @@ required
 
 
 
-<div className ="flex justify-between w-full">
-          <Link to='/' className = "flex justify-center items-center px-4 "> <FontAwesomeIcon  icon ={faHome}/></Link>
+
         <button type="submit"
         className='rounded-xl 
         border-amber-200 
-        border-2 
+        border-1
         hover:bg-amber-100 
         transform
         rotate-0
         disabled:rotate-12 
         cursor-pointer 
-        p-2 mt-2 
+        p-2 m-8 
         font-playwright 
-        font-medium 
+        font-sm 
         mx-auto
         shadow-lg ' disabled={!canLogin}> Sign In</button>
-      </div>
+    <div className ="flex justify-between w-full mt-auto">
+          <Link to='/' className = "flex justify-center items-center px-4 "> <FontAwesomeIcon  icon ={faHome}/></Link>
+      <label htmlFor="persist" 
+        className="text-xs font-poppins flex mx-auto justify-center align-middle " >
+        <input type="checkbox"
+        className="mr-2"
+        onChange={handlers.handlePersist}
+        checked = {inputData.persist}
+        
+        />
+        Trust This Device
+      </label>
+    </div>
       </form>
     </div>
   )

@@ -91,9 +91,9 @@ const EditUserForm = ({user}) => {
         }
         let canSave;
         if(password){
-          canSave =[roles.length, validUsername, validPassword].every(Boolean) && !isLoading 
+          canSave =[roles?.length, validUsername, validPassword].every(Boolean) && !isLoading 
         }else{
-          canSave =[roles.length, validUsername].every(Boolean) && !isLoading 
+          canSave =[roles?.length, validUsername].every(Boolean) && !isLoading 
         }
 
         

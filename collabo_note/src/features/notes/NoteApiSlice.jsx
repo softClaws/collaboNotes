@@ -11,10 +11,12 @@ import { createEntityAdapter,createSelector } from "@reduxjs/toolkit";
  export const notesApiSlice = apiSlice.injectEndpoints({
     endpoints: builder =>({
         getNotes: builder.query({
-            query: ()=>'/notes',
-            validateStatus: (response, result) =>{
+            query: ()=>({
+                url: '/notes',
+                validateStatus: (response, result) =>{
                 return response.status === 200 && !result.isError
             },
+            }),
             transformResponse: response =>{
                 const loadedNotes = response.map(note=>{
                     note.id = note._id // normalized data expect an id props and not _id , thus the changing the props to note.id and then return the note object

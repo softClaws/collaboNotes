@@ -5,14 +5,17 @@ import { useDispatch } from "react-redux"
 import { setCredentials } from "./authSlice"
 import { useLoginMutation } from "./authApiSlice"
 
-
 import { UserForm } from "./UserForm"
+
+import { usePersist } from "../../hooks/persist"
 const Login = () => {
   const userRef = useRef()
   const errRef = useRef()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [errMsg, setErrMsg] = useState('')
+  const [persist, setPersist] = usePersist()
+
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -53,6 +56,7 @@ const Login = () => {
   const handleUserInput = (e)=>setUsername(e.target.value)
   const handleErrMsgInput = (e)=>setErrMsg(e.target.value)
   const handlePasswordInput = (e)=>setPassword(e.target.value)
+  const handlePersist = ()=>setPersist(prev => !prev)
 
   const canLogin = [username, password].every(Boolean) && !isLoading
   const userErrRefs= {
@@ -70,16 +74,21 @@ const Login = () => {
     handleSubmit,
     handleUserInput,
     handleErrMsgInput,
-    handlePasswordInput
+    handlePasswordInput,
+    handlePersist
   }
   const attribute ={
     inputData,
     userErrRefs,
     handlers,
-    canLogin
+    canLogin,
+    persist
   }
 
-  if(isLoading) return <p>Loading ...</p>
+  if(isLoading) return <div className="flex justify-center items-center " >
+      
+      <PulseLoader color = {"#ff6600"}/>
+      </div>
   const content = (
     <div className='flex items-center 
     justify-center  gap-4'>

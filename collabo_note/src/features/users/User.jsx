@@ -1,15 +1,19 @@
 
-import { useSelector } from 'react-redux'
-import { selectUsersById } from './UsersApiSlice'
+import { memo } from 'react';
+import { useGetUsersQuery } from './UsersApiSlice';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faPenToSquare} from '@fortawesome/free-solid-svg-icons/faPenToSquare';
 
 export const User = ({userId}) => {
-    // selecting user by Id
-    const users = useSelector(state => selectUsersById(state, userId));
-
     const navigate = useNavigate()
+    // selecting user by Id
+    const {users} = useGetUsersQuery("usersList",({
+        selectFromResult: ({data})=>({
+                
+            users : data?.entities[userId]
+    })
+    }))
 
 
     if(users){
@@ -54,3 +58,5 @@ export const User = ({userId}) => {
         return null
     }
 }
+const MemoizedUser = memo(User)
+export default MemoizedUser

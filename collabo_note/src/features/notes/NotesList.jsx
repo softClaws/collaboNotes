@@ -1,6 +1,9 @@
-import { Note } from "./Note";
+import MemoizedNote from "./Note";
 import { useGetNotesQuery } from "./NoteApiSlice"
+import { useAuth } from "../../hooks/useAuth";
+import { PulseLoader } from "react-spinners";
 const NotesList = () => {
+  const {isContributor, isCreator, username} = useAuth()
 
   const {
     data: notes,
@@ -9,7 +12,7 @@ const NotesList = () => {
     isError,
     error
 
-  } = useGetNotesQuery(undefined, {
+  } = useGetNotesQuery("NotesList", {
     pollingInterval: 15000,
     refetchOnFocus: true,
     refetchOnMountOrArgChange: true
@@ -18,20 +21,31 @@ const NotesList = () => {
   let content;
 
   if(isLoading){
-    content = <p>Loading ...</p>
+    content = (
+      <div className="flex justify-center items-center " >
+      
+      <PulseLoader color = {"#ff6600"}/>
+      </div>
+    
+  )
   }
   if(isSuccess){
-    const {ids} = notes;
-    content = ids?.length? ids.map (noteId =>{
-      return(
-        <Note key ={noteId} noteId = {noteId} />
-      )
+    const {ids, entities} = notes;
+    let filteredIds;
+    if(isContributor || isCreator){
+      filteredIds =[...ids]
+    }else{
+      filteredIds = ids.filter(noteId => entities[noteId].username === username)
     }
-    ): "No Note Available"
+    content = ids?.length && filteredIds.map (noteId =>{
+      return(
+        <MemoizedNote key ={noteId} noteId = {noteId} />
+      )
+    })
   }
   if(isError){
-    content =  <p className="flex justify-center items-center align-middle">{error?.data.message}</p>
-    console.log(error?.data.message)
+    content =  <p className="flex justify-center items-center align-middle">{error?.data?.message}</p>
+    console.log(error?.data?.message)
   }
   return (
     <h1>{content}</h1>

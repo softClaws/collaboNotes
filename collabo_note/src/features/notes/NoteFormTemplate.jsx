@@ -2,9 +2,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {faSave} from "@fortawesome/free-solid-svg-icons/faSave"
 import {faTrashCan} from "@fortawesome/free-solid-svg-icons/faTrashCan"
-
+import { useAuth } from "../../hooks/useAuth"
 export const NoteFormTemplate = ({attribute}) => {
+    const {isContributor, isCreator} = useAuth()
     const {HeadingTitle, onSaveNewNoteFunc, titleValue,onTitleChange, text, onTextChange, user, userList, onDelNoteFunc, canSave, onUserChange, onEditNote, buttonText, delText, complete, created,updated,onCompleteChange} = attribute
+
+
   return(
         <form className="flex flex-col gap-2 justify-center items-center" onSubmit ={onSaveNewNoteFunc}>
             <h1 className="font-poppins text-md">{HeadingTitle}</h1>
@@ -72,7 +75,7 @@ export const NoteFormTemplate = ({attribute}) => {
             <div className="flex space-x-12 mb-2">
             <button type="submit" name ={buttonText}className="border-green-300 border-1 hover:border-green-400 rounded-2xl hover:border-2 px-4 cursor-pointer disabled:bg-gray-100 disabled:text-gray-400 text-green-600 disabled:border-0 bg-white px-2" disabled ={!canSave} onClick={onEditNote}><FontAwesomeIcon icon={faSave}/></button>
             {
-            (onDelNoteFunc)?
+            (onDelNoteFunc &&(isContributor || isCreator))?
             <button type="submit" name ={delText}className="border-red-300 border-1 hover:border-red-500-400 rounded-2xl hover:border-2 px-4 cursor-pointer disabled:bg-gray-100 disabled:text-gray-400  text-red-600 disabled:border-0 bg-white px-2"disabled ={!canSave}  onClick={onDelNoteFunc}><FontAwesomeIcon icon={faTrashCan}/></button> : null
             }
              </div>

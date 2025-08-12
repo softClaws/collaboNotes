@@ -58,7 +58,7 @@ onChange={passwordProps?.changeAction}/>
 
 
 </label>
-<span className=" absolute z-30 p-8 mb-0 ml-0 mt-3 mr-4 hidden peer-hover:inline px-16 peer-focus:inline text-xs font-techMono text-gray-400"> must include characters and symbols, !@#_$%</span>
+<span className=" absolute z-30 p-8 mb-2 ml-0 mt-3 mr-4 hidden peer-hover:inline px-16 peer-focus:inline text-xs font-techMono text-gray-400"> must include characters and symbols, !@#_$%</span>
 
 {(activeProps)?
 <label className='font-playwright flex px-2 mr-auto cursor-pointer' htmlFor="active"> 
@@ -73,7 +73,7 @@ checked={activeProps?.value}
 onChange={activeProps.changeAction}
 />
 <span className="mr-2 font-medium">{activeProps?.textLabel}: </span>
-<div className="w-6 h-6 border-2 border-gray-300 rounded-md  peer-checked:bg-green-400 peer-checked:border-green-400 transition-all duration-300 peer-checked:scale-110" onClick={activeProps.changeAction}></div>
+<div className="w-6 h-6 border-2 border-gray-300 rounded-md  peer-checked:bg-green-400 peer-checked:border-green-400 transition-all duration-300 peer-checked:scale-110 " onClick={activeProps.changeAction}></div>
 </label> : null
 }
 
